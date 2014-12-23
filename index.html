@@ -10,23 +10,6 @@
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
     <!-- font downloading via webfontloader library is now at the bottom of this file -->
-    <!-- async version -->
-    <script>
-      WebFontConfig = {
-        google: { families: ['Open+Sans:400,700'] }
-      };
-
-      (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                  '://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-      })();
-    </script>
-
     <!-- needs optimizing -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -104,6 +87,21 @@
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
-    
+    <!-- async version -->
+    <script>
+      WebFontConfig = {
+        google: { families: ['Open+Sans:400,700'] }
+      };
+
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                  '://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
   </body>
 </html>
