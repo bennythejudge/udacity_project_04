@@ -9,19 +9,28 @@
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
-    <!-- 
-    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js"></script>
+    <!-- font downloading via webfontloader library is now at the bottom of this file -->
+    <!-- async version -->
     <script>
-      WebFont.load({
-        google: {
-          families: ['Open+Sans:400,700']
-        }
-      });
-    </script>
-    -->
+      WebFontConfig = {
+        google: { families: ['Open+Sans:400,700'] }
+      };
 
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                  '://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+
+    <!-- needs optimizing -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- <link href="css/mobile.css" rel="stylesheet" media="only screen and (max-width: 480px)"> -->
+
+    <!-- inline styles + media queries since they are only few lines -->
     <style>
        @media print {
          * { background: transparent !important; 
@@ -39,9 +48,9 @@
          h2, h3{ page-break-after: avoid; }
        }
     </style>
+    <!-- <link href="css/print.css" rel="stylesheet" media="print"> -->
     
-    <link href="css/print.css" rel="stylesheet" media="print">
-
+    <!-- this is now async -->
     <script async>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
@@ -95,22 +104,6 @@
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
-    <!-- async version -->
-    <script>
-      WebFontConfig = {
-        google: { families: ['Open+Sans:400,700'] }
-      };
-
-      (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                  '://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-      })();
-    </script>
     
   </body>
 </html>

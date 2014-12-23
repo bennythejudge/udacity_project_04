@@ -42,3 +42,12 @@ Checklist:
 
 
 
+Optimizing fonts downloading:
+"Optimizing font rendering with inlining
+A simple alternative strategy to using the Font Loading API to eliminate the “blank text problem” is to inline the font contents into a CSS stylesheet:
+CSS stylesheets with matching media queries are automatically downloaded by the browser with high priority as they are required to construct the CSSOM.
+Inlining the font data into CSS stylesheet forces the browser to download the font with high priority and without waiting for the render tree - i.e. this acts as a manual override to the default lazyload behavior.
+The inlining strategy is not as flexible and does not allow us to define custom timeouts or rendering strategies for different content, but it is a simple and robust solution that works across all browsers. For best results, separate inlined fonts into standalone stylesheet and serve them with a long max-age - this way, when you update your CSS you are not forcing your visitors to redownload the fonts."
+From: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization?hl=en (23/12/2014)
+
+
