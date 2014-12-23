@@ -23,3 +23,22 @@ https://www.youtube.com/watch?v=sqesm0euf9M (webfonts with Ilya Gregorik)
 https://www.youtube.com/watch?v=YV1nKLWoARQ (Ilya Gregorik)
 
 
+
+List of pages to be analyzed and optimized (using the github page as serving location):
+http://bennythejudge.github.io/
+
+http://bennythejudge.github.io/project-2048.html 
+http://bennythejudge.github.io/project-webperf.html 
+http://bennythejudge.github.io/project-mobile.html 
+http://bennythejudge.github.io/views/pizza.html 
+
+
+Checklist:
+1) above the fold CSS vs. all the other CSS
+2) image optimization
+3) minify everything
+4) compression? is that a web server level feature or can I implement it otherwise?
+5) JavaScript: can it be deferred - async?
+
+
+
