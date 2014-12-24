@@ -1,5 +1,39 @@
 Logbook
 
+index.html
+1) using uncss I have removed 2 tags from the style.css
+because they were not used (b and ol). I have also brought 
+the body background in the existing tag entry - i believe it makes no difference.
+
+2) inlined style.css: I decided that this stylesheet was small enough to be inlined which would avoid blocking the CRP.
+
+3) google analytics script: added async; this script is the perfect example of a script that can be deferred
+
+4) moved the loading of the Google font Open Sans 400 and 700 to the end of the body using a JavaScript to load the font using the WebFont library in the async version.
+There is a downside: a FOUC is now visible in the rendering, with the font being changed on the fly during rendering.
+
+5) perfmatters.js also deferred using async as it seems another perfect candidate script to be deferred.
+
+
+
+
+
+TODO:
+index.html
+improve the CSS by creating ID or CLASS to avoid using
+child selectors
+E.g.:
+header p span: here the browser for every span must check if it's the child of p and then of header.
+add an id header-p-span and use it to qualify the span tag and use the ID in the CSS selector
+
+
+
+
+
+
+
+
+
 - add media query to css/print.css
 
 
