@@ -4,15 +4,13 @@ index.html
 1) using uncss I have removed 2 tags from the style.css
 because they were not used (b and ol). I have also brought 
 the body background in the existing tag entry - i believe it makes no difference.
-
 2) inlined style.css: I decided that this stylesheet was small enough to be inlined which would avoid blocking the CRP.
-
 3) google analytics script: added async; this script is the perfect example of a script that can be deferred
-
 4) moved the loading of the Google font Open Sans 400 and 700 to the end of the body using a JavaScript to load the font using the WebFont library in the async version.
 There is a downside: a FOUC is now visible in the rendering, with the font being changed on the fly during rendering.
-
 5) perfmatters.js also deferred using async as it seems another perfect candidate script to be deferred.
+6) images have been optimised using and online JPEG manipulation tool, by compressing and resizing them.
+7) the mobile section of style.css (subject to media query) has been extracted and inlined
 
 
 
@@ -30,23 +28,16 @@ add an id header-p-span and use it to qualify the span tag and use the ID in the
 
 
 
+Dated notes:
+18/12: adding async to the Google analytics script - by definition one script that should not block
 
-
-
-
+Other notes
 - add media query to css/print.css
 
 
-
-18/12: adding async to the Google analytics script - by definition one script that should not block
-
-
-
 Tools, links, readings and more
-
 https://developer.chrome.com/devtools/docs/timeline
 http://www.webpagetest.org
-
 http://googlewebfonts.blogspot.co.uk/2010/09/optimizing-use-of-google-font-api.html
 https://developers.google.com/fonts/docs/webfont_loader
 https://github.com/typekit/webfontloader 
@@ -60,7 +51,6 @@ https://www.youtube.com/watch?v=YV1nKLWoARQ (Ilya Gregorik)
 
 List of pages to be analyzed and optimized (using the github page as serving location):
 http://bennythejudge.github.io/
-
 http://bennythejudge.github.io/project-2048.html 
 http://bennythejudge.github.io/project-webperf.html 
 http://bennythejudge.github.io/project-mobile.html 
