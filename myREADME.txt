@@ -46,7 +46,7 @@ http://gtmetrix.com/
 http://stackoverflow.com/questions/12316501/including-google-web-fonts-link-or-import/12380004#12380004 
 https://www.youtube.com/watch?v=sqesm0euf9M (webfonts with Ilya Gregorik)
 https://www.youtube.com/watch?v=YV1nKLWoARQ (Ilya Gregorik)
-
+https://tinypng.com (image optimization)
 
 
 List of pages to be analyzed and optimized (using the github page as serving location):
