@@ -47,13 +47,15 @@ http://stackoverflow.com/questions/12316501/including-google-web-fonts-link-or-i
 https://www.youtube.com/watch?v=sqesm0euf9M (webfonts with Ilya Gregorik)
 https://www.youtube.com/watch?v=YV1nKLWoARQ (Ilya Gregorik)
 https://tinypng.com (image optimization)
+http://www.picresize.com/results
+
 
 
 List of pages to be analyzed and optimized (using the github page as serving location):
-http://bennythejudge.github.io/
-http://bennythejudge.github.io/project-2048.html 
-http://bennythejudge.github.io/project-webperf.html 
-http://bennythejudge.github.io/project-mobile.html 
+http://bennythejudge.github.io/                        (OK)
+http://bennythejudge.github.io/project-2048.html       (OK)
+http://bennythejudge.github.io/project-webperf.html    (OK)
+http://bennythejudge.github.io/project-mobile.html     ()
 http://bennythejudge.github.io/views/pizza.html 
 
 
