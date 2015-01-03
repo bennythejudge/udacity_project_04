@@ -1,6 +1,30 @@
-Logbook
+Udacity - Project nr. 4 - Optimizing web performances
+Optimizing main.js
+A Logbook
 
-index.html
+Changes made to the source
+01. improving all loops by caching variables
+02. removing the getElementById at each iteration - it's not necessary and deleting the variable at the end of the loop:
+            // This for-loop actually creates and appends all of the pizzas when the page loads
+            // TODO: DO WE REALLY NEED TO getElementById for every loop? 
+            // TODO: could we not get it once and then append to that?
+            var pizzasDiv = document.getElementById("randomPizzas");
+            for (var i = 2; i < 100; i++) {
+              // var pizzasDiv = document.getElementById("randomPizzas");
+              pizzasDiv.appendChild(pizzaElementGenerator(i));
+            }
+            delete pizzasDiv;
+05. caching document.body.scrollTop: 
+    using the CPU profiling of devtools I noticed that get scrollTop had a 
+    very high CPU usage, which draw me to this part of the code and helped me identify this 
+    as a possible optimization. It seems to be quite effective in bringing most of the scrolling
+    at or above 60fps. There are still spikes below the 30fps to be investigated
+06. embedding CSS
+    both css files have been inlined to prevent blocking the rendering process. Both have been cleaned from unused elements
+    using the devtools audit feature
+
+
+Optimizing index.html
 1) using uncss I have removed 2 tags from the style.css
 because they were not used (b and ol). I have also brought 
 the body background in the existing tag entry - i believe it makes no difference.
@@ -12,16 +36,6 @@ There is a downside: a FOUC is now visible in the rendering, with the font being
 6) images have been optimised using and online JPEG manipulation tool, by compressing and resizing them.
 7) the mobile section of style.css (subject to media query) has been extracted and inlined
 
-TODO:
-******
--> USE GRUNT to minify etc.. and create a "production" version of the code in a separate folder
-******
-index.html
-improve the CSS by creating ID or CLASS to avoid using
-child selectors
-E.g.:
-header p span: here the browser for every span must check if it's the child of p and then of header.
-add an id header-p-span and use it to qualify the span tag and use the ID in the CSS selector
 
 Dated notes:
 18/12: adding async to the Google analytics script - by definition one script that should not block
@@ -29,7 +43,19 @@ Dated notes:
 Other notes
 - add media query to css/print.css
 
-Tools, links, readings and more
+Tools, links, posts, readings and more
+https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/
+I think this post epitomises how complex, opinionated and dynamic web optimization is.
+Basically what you knew to be right is now wrong - but with a lot of "buts", because 
+it's all relative whether you can really use async or not.
+It's hard to resist thinking: "the hell with all of this, let's just do our best and even if it's 
+not 60fps, it can still be a good website". 
+Obviously the above is not acceptable - optimization is paramount, especially as the complexity of applications increases. 
+It's just that I wish I had learned more by coding before coming to this topic. But it's just my opinion.
+
+https://blogs.oracle.com/greimer/entry/best_way_to_code_a
+Learning that something that I have always done instictively in my scripts in Perl or Python, has a technical name: "caching".
+
 https://developer.chrome.com/devtools/docs/timeline
 http://www.webpagetest.org
 http://googlewebfonts.blogspot.co.uk/2010/09/optimizing-use-of-google-font-api.html
@@ -50,7 +76,8 @@ http://bennythejudge.github.io/                        (OK)
 http://bennythejudge.github.io/project-2048.html       (OK)
 http://bennythejudge.github.io/project-webperf.html    (OK)
 http://bennythejudge.github.io/project-mobile.html     (OK)
-http://bennythejudge.github.io/views/pizza.html 
+http://bennythejudge.github.io/views/pizza.html        (pending)
+
 
 
 Checklist:
@@ -59,8 +86,6 @@ Checklist:
 3) minify everything
 4) compression? is that a web server level feature or can I implement it otherwise?
 5) JavaScript: can it be deferred - async?
-
-
 
 Optimizing fonts downloading:
 "Optimizing font rendering with inlining
@@ -71,22 +96,19 @@ The inlining strategy is not as flexible and does not allow us to define custom 
 From: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization?hl=en (23/12/2014)
 
 
-Tackling main.js
-1) improving all loops by caching the length (https://blogs.oracle.com/greimer/entry/best_way_to_code_a)
-2) in the following snippet:
-    a) remove the getElementById at each iteration - it's not necessary
-    b) delete the variable at the end
-            // This for-loop actually creates and appends all of the pizzas when the page loads
-            // TODO: DO WE REALLY NEED TO getElementById for every loop? 
-            // TODO: could we not get it once and then append to that?
-            var pizzasDiv = document.getElementById("randomPizzas");
-            for (var i = 2; i < 100; i++) {
-              // var pizzasDiv = document.getElementById("randomPizzas");
-              pizzasDiv.appendChild(pizzaElementGenerator(i));
-            }
-            delete pizzasDiv;
-3)
 
+TODO:
+******
+-> USE GRUNT to minify etc.. and create a "production" version of the code in a separate folder
+******
+index.html
+improve the CSS by creating ID or CLASS to avoid using
+child selectors
+E.g.:
+header p span: here the browser for every span must check if it's the child of p and then of header.
+add an id header-p-span and use it to qualify the span tag and use the ID in the CSS selector
+
+- hai visto una cosa che usa le classes di web font config per fare hidden/visible - applica!!!
 
 
 

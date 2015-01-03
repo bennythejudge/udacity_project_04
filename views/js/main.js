@@ -5,7 +5,6 @@ jank-free at 60 frames per second.
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
 
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
@@ -15,7 +14,6 @@ Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
-
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -354,7 +352,6 @@ var makeRandomPizza = function() {
 
   pizza = pizza + ingredientItemizer(selectRandomSauce());
   pizza = pizza + ingredientItemizer(selectRandomCrust());
-
   return pizza;
 }
 
@@ -378,30 +375,24 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "images/pizza.png";
+  pizzaImage.src = "images/pizza_opt_02.png";
   pizzaImage.classList.add("img-responsive");
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
-
-
   pizzaDescriptionContainer.classList.add("col-md-6");
-
   pizzaName = document.createElement("h4");
   pizzaName.innerHTML = randomName();
   pizzaDescriptionContainer.appendChild(pizzaName);
-
   ul = document.createElement("ul");
   ul.innerHTML = makeRandomPizza();
   pizzaDescriptionContainer.appendChild(ul);
   pizzaContainer.appendChild(pizzaDescriptionContainer);
-
   return pizzaContainer;
 }
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) { 
   window.performance.mark("mark_start_resize");   // User Timing API function
-
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
     switch(size) {
@@ -450,7 +441,7 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+    for (var i = 0, len=document.querySelectorAll(".randomPizzaContainer").length; i < len; i++) {
       var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
       var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
@@ -469,10 +460,12 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+// P4 - BLG: cached the pizzasDiv (change 02)
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
+delete pizzasDiv;
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
@@ -488,7 +481,8 @@ var frame = 0;
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
   var numberOfEntries = times.length;
   var sum = 0;
-  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
+  // P4 - BLG: cached 'numberOfEntries - 11'
+  for (var i = numberOfEntries - 1, len = numberOfEntries - 11; i > len; i--) {
     sum = sum + times[i].duration;
   }
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
@@ -499,23 +493,39 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
+   var w = window.innerWidth
+   || document.documentElement.clientWidth
+   || document.body.clientWidth;
+   var h = window.innerHeight
+   || document.documentElement.clientHeight
+   || document.body.clientHeight;
+   console.log(w,h);
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-  }
+   frame++;
+   window.performance.mark("mark_start_frame");
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
-  }
+   var items = document.querySelectorAll('.mover');
+   // P4 - BLG: cached document.body.scrollTop (change 05)
+   var bodyScrollTop = document.body.scrollTop;
+   var value1 = bodyScrollTop / 1250;
+
+   console.log("bodyScrollTop: " + bodyScrollTop);
+   console.log("value1: " + value1);
+
+   // P4 - BLG: cached the items.length (change 01)
+   for (var i = 0, len = items.length; i < len; i++) {
+      var phase = Math.sin((value1) + (i % 5));
+      items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+   }
+
+   // User Timing API to the rescue again. Seriously, it's worth learning.
+   // Super easy to create custom metrics.
+   window.performance.mark("mark_end_frame");
+   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+   if (frame % 10 === 0) {
+      var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+      logAverageFrame(timesToUpdatePosition);
+   }
 }
 
 // runs updatePositions on scroll
@@ -528,7 +538,10 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
+    elem.src = "images/Optimized-pizza.png";
+    // P4 - BLG
+    elem.width = 73;
+    elem.height = 100;
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
