@@ -509,13 +509,17 @@ function updatePositions() {
    var bodyScrollTop = document.body.scrollTop;
    var value1 = bodyScrollTop / 1250;
 
-   console.log("bodyScrollTop: " + bodyScrollTop);
-   console.log("value1: " + value1);
+   // console.log("bodyScrollTop: " + bodyScrollTop);
+   // console.log("value1: " + value1);
 
    // P4 - BLG: cached the items.length (change 01)
    for (var i = 0, len = items.length; i < len; i++) {
-      var phase = Math.sin((value1) + (i % 5));
-      items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+      if (parseInt(items[i].style.top, 10) <= h) {
+         var phase = Math.sin((value1) + (i % 5));
+         items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+         // console.log("left: " + items[i].style.left);
+         // console.log("top: " + items[i].style.top);
+      }
    }
 
    // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -533,20 +537,32 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+   var w = window.innerWidth
+   || document.documentElement.clientWidth
+   || document.body.clientWidth;
+   var h = window.innerHeight
+   || document.documentElement.clientHeight
+   || document.body.clientHeight;
+   // console.log(w,h);
+   
   var cols = 8;
   var s = 256;
   for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/Optimized-pizza.png";
-    // P4 - BLG
-    elem.width = 73;
-    elem.height = 100;
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+     // only create visible sliding pizzas P4 - BLG
+     var top_value= Math.floor(i / cols) * s;
+     if (top_value <= h) {
+        var elem = document.createElement('img');
+        elem.className = 'mover';
+        elem.src = "images/Optimized-pizza.png";
+        // P4 - BLG
+        elem.width = 73;
+        elem.height = 100;
+        elem.style.height = "100px";
+        elem.style.width = "73.333px";
+        elem.basicLeft = (i % cols) * s;
+        elem.style.top = (Math.floor(i / cols) * s) + 'px';
+        document.querySelector("#movingPizzas1").appendChild(elem);
+     }
   }
   updatePositions();
 });
