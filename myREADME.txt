@@ -22,7 +22,11 @@ Changes made to the source
 06. embedding CSS
     both css files have been inlined to prevent blocking the rendering process. Both have been cleaned from unused elements
     using the devtools audit feature
-
+07. limiting updatePositions loop to the "visible" pizzas, that is to say the pizzas which are within the visible window in the 
+    browser.
+    First I need to obtain the size (http://www.w3schools.com/jsref/prop_win_innerheight.asp)
+    Then inside the loop only change pizzas where the top is less than or equal to the window height
+08. PageSpeed Insights recommended adding image size to the background pizza image
 
 Optimizing index.html
 1) using uncss I have removed 2 tags from the style.css
@@ -68,6 +72,7 @@ https://www.youtube.com/watch?v=sqesm0euf9M (webfonts with Ilya Gregorik)
 https://www.youtube.com/watch?v=YV1nKLWoARQ (Ilya Gregorik)
 https://tinypng.com (image optimization)
 http://www.picresize.com/results
+http://www.w3schools.com/jsref/prop_win_innerheight.asp (about window size)
 
 
 
