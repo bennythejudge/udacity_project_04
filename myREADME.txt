@@ -2,7 +2,7 @@ Udacity - Project nr. 4 - Optimizing web performances
 Optimizing main.js
 A Logbook
 
-Rubric
+Notes on adherence to rubric
 01. all 5 pages achieve a PageSpeed score of 90 or more
 02. the static pages seem to be getting the required 60fps, and are quite uniform (see attached
     screenshots)
@@ -16,10 +16,7 @@ Rubric
 
 Changes made to the source
 01. improving all loops by caching variables
-02. removing the getElementById at each iteration - it's not necessary and deleting the variable at the end of the loop:
-            // This for-loop actually creates and appends all of the pizzas when the page loads
-            // TODO: DO WE REALLY NEED TO getElementById for every loop? 
-            // TODO: could we not get it once and then append to that?
+02. removing the getElementById at each iteration - it's not necessary plus deleting the variable at the end of the loop:
             var pizzasDiv = document.getElementById("randomPizzas");
             for (var i = 2; i < 100; i++) {
               // var pizzasDiv = document.getElementById("randomPizzas");
@@ -39,7 +36,10 @@ Changes made to the source
     First I need to obtain the size (http://www.w3schools.com/jsref/prop_win_innerheight.asp)
     Then inside the loop only change pizzas where the top is less than or equal to the window height
 08. PageSpeed Insights recommended adding image size to the background pizza image
-
+09. implementing the use of requestAnimationFrame as indicated by various sources, and in particular:
+    http://www.html5rocks.com/en/tutorials/speed/animations/
+    The change consists in not calling directly updatePositions to update the background sliding pizza, but to 
+    let the browser do that in its own time using the requestAnimationFrame.
 
 Optimizing index.html
 1) using uncss I have removed 2 tags from the style.css
