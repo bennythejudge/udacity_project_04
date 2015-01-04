@@ -2,6 +2,18 @@ Udacity - Project nr. 4 - Optimizing web performances
 Optimizing main.js
 A Logbook
 
+Rubric
+01. all 5 pages achieve a PageSpeed score of 90 or more
+02. the static pages seem to be getting the required 60fps, and are quite uniform (see attached
+    screenshots)
+    pizza.html and main.js show 1 peak (below 60fps) when the page is first rendered which I have 
+    not been able to eliminate.
+    Scrolling instead seems consinstently at 60fps or above and quite uniform.
+03. changes have been made. In terms of tools I have used uncss and devtools (audit and profiling) 
+    in Chrome
+04. comments have been added in main.js to signal changes
+05. this file has been provided to document the changes, the tools used and articles and posts read.
+
 Changes made to the source
 01. improving all loops by caching variables
 02. removing the getElementById at each iteration - it's not necessary and deleting the variable at the end of the loop:
@@ -28,6 +40,7 @@ Changes made to the source
     Then inside the loop only change pizzas where the top is less than or equal to the window height
 08. PageSpeed Insights recommended adding image size to the background pizza image
 
+
 Optimizing index.html
 1) using uncss I have removed 2 tags from the style.css
 because they were not used (b and ol). I have also brought 
@@ -48,18 +61,20 @@ Other notes
 - add media query to css/print.css
 
 Tools, links, posts, readings and more
+http://www.html5rocks.com/en/tutorials/speed/animations/
+On the theme of using requestAnimationFrame instead of calling updatePositions directly
+in order to be in sync with the refresh cycle of the browser and avoid causing reflowing and repainting
+
 https://www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/
-I think this post epitomises how complex, opinionated and dynamic web optimization is.
-Basically what you knew to be right is now wrong - but with a lot of "buts", because 
-it's all relative whether you can really use async or not.
-It's hard to resist thinking: "the hell with all of this, let's just do our best and even if it's 
-not 60fps, it can still be a good website". 
-Obviously the above is not acceptable - optimization is paramount, especially as the complexity of applications increases. 
-It's just that I wish I had learned more by coding before coming to this topic. But it's just my opinion.
+On the theme of how to avoid creating blockages of the CRP when using JavaScript resources.
+How the approach has changed with the introduction of "async" but also on the risks and limitations
+of using it.
 
 https://blogs.oracle.com/greimer/entry/best_way_to_code_a
-Learning that something that I have always done instictively in my scripts in Perl or Python, has a technical name: "caching".
+Learning that something that I have always done instictively in my scripts in Perl or Python, has a technical name: "caching". 
 
+
+Other resources used during P4 work
 https://developer.chrome.com/devtools/docs/timeline
 http://www.webpagetest.org
 http://googlewebfonts.blogspot.co.uk/2010/09/optimizing-use-of-google-font-api.html
@@ -81,7 +96,7 @@ http://bennythejudge.github.io/                        (OK)
 http://bennythejudge.github.io/project-2048.html       (OK)
 http://bennythejudge.github.io/project-webperf.html    (OK)
 http://bennythejudge.github.io/project-mobile.html     (OK)
-http://bennythejudge.github.io/views/pizza.html        (pending)
+http://bennythejudge.github.io/views/pizza.html        (OK)
 
 
 
@@ -99,21 +114,6 @@ CSS stylesheets with matching media queries are automatically downloaded by the 
 Inlining the font data into CSS stylesheet forces the browser to download the font with high priority and without waiting for the render tree - i.e. this acts as a manual override to the default lazyload behavior.
 The inlining strategy is not as flexible and does not allow us to define custom timeouts or rendering strategies for different content, but it is a simple and robust solution that works across all browsers. For best results, separate inlined fonts into standalone stylesheet and serve them with a long max-age - this way, when you update your CSS you are not forcing your visitors to redownload the fonts."
 From: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization?hl=en (23/12/2014)
-
-
-
-TODO:
-******
--> USE GRUNT to minify etc.. and create a "production" version of the code in a separate folder
-******
-index.html
-improve the CSS by creating ID or CLASS to avoid using
-child selectors
-E.g.:
-header p span: here the browser for every span must check if it's the child of p and then of header.
-add an id header-p-span and use it to qualify the span tag and use the ID in the CSS selector
-
-- hai visto una cosa che usa le classes di web font config per fare hidden/visible - applica!!!
 
 
 
