@@ -2,6 +2,10 @@ Udacity - Project nr. 4 - Optimizing web performances
 Optimizing main.js
 A Logbook
 
+The optimized version is available online at 
+http://bennythejudge.github.io
+
+
 Notes on adherence to rubric
 01. all 5 pages achieve a PageSpeed score of 90 or more
 02. the static pages seem to be getting the required 60fps, and are quite uniform (see attached
