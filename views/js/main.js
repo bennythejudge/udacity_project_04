@@ -550,8 +550,8 @@ window.addEventListener('scroll', onScroll);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var numberOfPizzas = 200;
-  // var numberOfPizzas = 40;
+  // var numberOfPizzas = 200;
+  var numberOfPizzas = 40;
   for (var i = 0; i < numberOfPizzas; i++) {
      var top_value= Math.floor(i / cols) * s;
      var elem = document.createElement('img');
