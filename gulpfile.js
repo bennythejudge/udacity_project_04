@@ -26,7 +26,7 @@ gulp.task('scripts1', function() {
     return gulp.src(['views/js/main.js'])
          .pipe(uglify())
          .pipe(rename('main.min.js'))
-         .pipe(gulp.dest('dist/views/zjs'));
+         .pipe(gulp.dest('dist/views/js'));
 });
 
 // Minify JS
