@@ -2,6 +2,30 @@ Udacity - Project nr. 4 - Optimizing web performances
 Optimizing main.js
 A Logbook
 
+Submission 2 - 19/01/2015
+1) using gulp to minify the javascript and html files (I no longer have external css files)
+list of files to be minified:
+./index.html
+./project-2048.html
+./project-mobile.html
+./project-webperf.html
+./views/pizza.html
+./js/perfmatters.js
+./views/js/main.js
+
+neo (second-submission *%) frontend-nanodegree-mobile-portfolio $ ls -l original/
+total 112
+-rw-rw-r--@ 1 neo  staff   4795 19 Jan 17:13 index.html
+-rw-rw-r--@ 1 neo  staff  23059 19 Jan 17:13 pizza.html
+-rw-r--r--@ 1 neo  staff   4200 19 Jan 17:13 project-2048.html
+-rw-r--r--@ 1 neo  staff   4514 19 Jan 17:13 project-mobile.html
+-rw-r--r--@ 1 neo  staff   4447 19 Jan 17:13 project-webperf.html
+
+The original files are in ./original
+
+---------------------------------------------------------------------
+
+
 The optimized version is available online at 
 http://bennythejudge.github.io
 
