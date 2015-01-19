@@ -23,9 +23,14 @@ total 112
 
 The original files are in ./original
 
----------------------------------------------------------------------
+The new code is available at http://bennythejudge.github.io
+I have created a branch in the github repository called "second-submission".
+The minified version of the html and js files is available online at http://bennythejudge.github.io
 
 
+END OF SECOND SUBMISSION NOTES
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 The optimized version is available online at 
 http://bennythejudge.github.io
 
